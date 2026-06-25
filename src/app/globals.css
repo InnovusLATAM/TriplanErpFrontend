@@ -1,0 +1,335 @@
+.swal2-with-backdrop {
+  background: rgba(0,0,0,.4);
+}
+.swal2-with-backdrop {
+  background: rgba(10, 10, 10, 0.86);
+}
+
+@media (min-width: 992px) {
+  :root {
+    --bs-app-header-height: 75px;
+    --bs-app-header-height-actual: 75px;
+  }
+}
+
+/*.swal2-container{*/
+/*    background:  var(--swal2-backdrop) !important;*/
+/*}*/
+.bootstrap-select .dropdown-mobile {
+  transform: translate(0, 40px) !important;
+}
+
+/*TOAST STYLES*/
+/* Estilos personalizados para los toasts */
+.swal2-popup.swal2-toast {
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-weight: 500;
+}
+
+/* Toast éxito */
+.swal2-icon.swal2-success {
+  border-color: #2ecc71;
+  color: #2ecc71;
+}
+
+.swal2-success .swal2-success-ring {
+  border-color: rgba(46, 204, 113, 0.3);
+}
+
+.swal2-success [class^=swal2-success-line] {
+  background-color: #2ecc71;
+}
+
+/* Toast error */
+.swal2-icon.swal2-error {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.swal2-error [class^=swal2-x-mark-line] {
+  background-color: #e74c3c;
+}
+
+/* Toast advertencia */
+.swal2-icon.swal2-warning {
+  border-color: #f39c12;
+  color: #f39c12;
+}
+
+/* Toast información */
+.swal2-icon.swal2-info {
+  border-color: #3498db;
+  color: #3498db;
+}
+
+/* Personalización de la barra de progreso */
+.swal2-timer-progress-bar {
+  height: 4px;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Toast éxito */
+.toast-success .swal2-timer-progress-bar {
+  background: rgba(228, 228, 228, 0.7);
+}
+
+/* Toast error */
+.toast-error .swal2-timer-progress-bar {
+  background: rgba(228, 228, 228, 0.7);
+}
+
+/* Toast advertencia */
+.toast-warning .swal2-timer-progress-bar {
+  background: rgba(228, 228, 228, 0.7);
+}
+
+/* Toast información */
+.toast-info .swal2-timer-progress-bar {
+  background: rgba(228, 228, 228, 0.7);
+}
+
+.toast-success {
+  color: white !important;
+}
+
+.toast-info {
+  color: white !important
+}
+
+.toast-warning {
+  color: white !important;
+}
+
+.toast-danger {
+  color: white !important;
+}
+
+.toast-error {
+  color: white !important;
+}
+
+.swal2-toast.swal2-popup .swal2-title {
+  color: white !important;
+}
+
+/**/
+
+/* RESTAURANTE PLATOS */
+/*.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active {
+    color: white !important;
+}*/
+
+:root {
+  --primary-color: #4e73df;
+  --secondary-color: #858796;
+  --success-color: #1cc88a;
+  --info-color: #36b9cc;
+  --warning-color: #f6c23e;
+  --danger-color: #e74a3b;
+  --light-color: #f8f9fc;
+  --dark-color: #5a5c69;
+}
+
+.product-item {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-item:hover {
+  background-color: #f8f9fa;
+  border-color: var(--primary-color);
+}
+
+.product-item:active {
+  cursor: grabbing;
+}
+
+.product-item .product-name {
+  font-weight: 600;
+}
+
+.product-item .product-category {
+  font-size: 0.75rem;
+  color: var(--secondary-color);
+}
+
+.selected-products-container {
+  min-height: 150px;
+  border: 2px dashed #ddd;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  transition: all 0.3s;
+}
+
+.selected-products-container.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected-products-container.empty .empty-message {
+  margin: 0;
+}
+
+.selected-products-container.highlight {
+  border-color: var(--primary-color);
+  background-color: rgba(78, 115, 223, 0.05);
+}
+
+.selected-product {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  margin: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.selected-product .remove-product {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.selected-product .remove-product:hover {
+  opacity: 1;
+}
+
+.plate-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.plate-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.plate-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.empty-plate {
+  opacity: 0.5;
+}
+
+.product-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .plate-circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .product-categories {
+    justify-content: center;
+  }
+}
+
+/* FIN RESTAURANTE PLATOS */
+
+@media (min-width: 992px) {
+  /*[data-kt-app-sidebar-fixed=true] .app-wrapper {*/
+  /*    margin-top: 0;*/
+  /*}*/
+  /*#kt_app_sidebar{*/
+  /*  top: 0 !important;*/
+  /*}*/
+  .app-sidebar-wrapper{
+    height: 100%;
+  }
+}
+
+.app-sidebar-menu-primary.menu > .menu-item > .menu-link.active{
+  background-color: rgb(37, 47, 74);
+  color: var(--bs-white);
+}
+
+.app-sidebar-menu-primary.menu > .menu-item > .menu-link.active .menu-icon, .app-sidebar-menu-primary.menu > .menu-item > .menu-link.active .menu-icon .svg-icon, .app-sidebar-menu-primary.menu > .menu-item > .menu-link.active .menu-icon i{
+  color: var(--bs-white);
+}
+
+.app-sidebar-menu-primary.menu > .menu-item > .menu-link.active .menu-title{
+  color: var(--bs-white);
+}
+
+/*SUBMENU ITEM OPTION*/
+.app-sidebar-menu-primary.menu > .menu-item .menu-item .menu-link.active{
+  background-color: #252f4a;
+}
+.app-sidebar-menu-primary.menu > .menu-item .menu-item .menu-link.active .menu-bullet .bullet{
+  background-color: var(--bs-white);
+}
+.app-sidebar-menu-primary.menu > .menu-item .menu-item .menu-link.active .menu-title{
+  color: var(--bs-white);
+}
+/*END SUBMENU ITEM OPTION*/
+
+.flex-column-fluid{
+  min-height: 92%;
+}
+
+/*OVERLAY NOTIFICATION*/
+
+.overlay-container {
+  position: relative; /* necesario para posicionar el overlay */
+}
+
+.overlay {
+  position: absolute;
+  inset: 0; /* ocupa todo el elemento padre */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: inherit; /* si el padre tiene bordes redondeados */
+  z-index: 10;
+  transition: opacity .25s ease;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none; /* evita que bloquee clics cuando está oculto */
+}
+
+/*para las ribbons custom*/
+.ribbon .ribbon-label{
+  z-index: 0 !important;
+}

@@ -1,0 +1,13 @@
+export const API_ENDPOINTS = {
+    auth: {
+        login: '/auth/login',
+        register: '/auth/register',
+        me: '/auth/me',
+        logout: '/auth/logout',
+        refresh: '/auth/refresh',
+    },
+    users: {
+        base: '/users',
+        byId: (id: string) => `/users/${id}`,
+    },
+} as const;
