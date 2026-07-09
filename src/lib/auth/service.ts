@@ -6,6 +6,29 @@ import Cookies from 'js-cookie';
 const TOKEN_COOKIE = process.env.NEXT_PUBLIC_COOKIE_NAME;
 
 export const authService = {
+
+    loginWithGoogle: async (credentials: string) => {
+        const locale = Intl.DateTimeFormat().resolvedOptions().locale;
+        const countryCode = locale.split("-")[1] ?? null;
+        const response = await api.post<LoginResponse>("/auth/google", {
+            credential: credentials,
+            company: null,
+            country:countryCode,
+        });
+
+        if (response.ok && response.data?.data?.token) {
+            const { token } = response.data.data;
+            Cookies.set(TOKEN_COOKIE, token, {
+                expires: 7,
+                path: '/',
+                secure: process.env.NEXT_PUBLIC_ENVIRONMENT === 'production',
+                sameSite: 'strict',
+            });
+        }
+
+        return response;
+    },
+
     async login(credentials: LoginCredentials): Promise<ApiResponse<LoginResponse>> {
         const response = await api.post<LoginResponse>(API_ENDPOINTS.auth.login, credentials);
 
@@ -64,5 +87,20 @@ export const authService = {
 
     isAuthenticated(): boolean {
         return !!this.getToken();
-    }
+    },
+
+    forgotPassword: async (email: string) => {
+        const locale = Intl.DateTimeFormat().resolvedOptions().locale;
+        const countryCode = locale.split("-")[1] ?? null;
+        const response = await api.post("/auth/recover", {
+            email: email
+        });
+        return response;
+    },
+    recoverPassword: async (password: string,recoveryId: string) => {
+        const response = await api.post(`/auth/recover/${recoveryId}`, {
+            password: password
+        });
+        return response;
+    },
 };

@@ -288,7 +288,7 @@ export default function RegisterForm() {
                                     {/*end::Accept*/}
                                     {/*begin::Sign up*/}
                                     <div className="text-gray-500 text-center fw-semibold fs-6">
-                                        ¿Ya tienes une cuenta?
+                                        ¿Ya tienes una cuenta?
                                         <Link href="/login" className="link-primary fw-semibold">
                                             &nbsp;
                                             Inicia Sesión

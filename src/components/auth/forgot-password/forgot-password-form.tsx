@@ -1,14 +1,22 @@
 'use client'
-
-
 import Link from "next/link";
+import {useLoginForm} from "@/hooks/auth/useLogin";
+import {useForgotPassword} from "@/hooks/auth/useForgotPassword";
+
+
 
 export default function ForgotPasswordForm() {
+
+    const {
+        handleSubmit,
+    } = useForgotPassword();
+
     return (
         <div className="w-lg-500px p-10">
-            <div
+            <form
+                onSubmit={handleSubmit}
                 className="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
-                id="kt_password_reset_form"
+                id="forgot_password_form"
                 data-kt-redirect-url="/authentication/layouts/overlay/new-password.html"
             >
                 {/*begin::Heading*/}
@@ -30,7 +38,6 @@ export default function ForgotPasswordForm() {
                         type="text"
                         placeholder="Correo electrónico"
                         name="email"
-                        autoComplete="off"
                         className="form-control bg-transparent"
                     />
                     {/*end::Email*/}
@@ -39,9 +46,10 @@ export default function ForgotPasswordForm() {
                 {/*begin::Actions*/}
                 <div className="d-flex flex-wrap justify-content-center pb-lg-0">
                     <button
-                        type="button"
+                        type="submit"
                         id="kt_password_reset_submit"
                         className="btn btn-primary me-4"
+
                     >
                         {/*begin::Indicator label*/}
                         <span className="indicator-label">Enviar</span>
@@ -61,7 +69,7 @@ export default function ForgotPasswordForm() {
                     </Link>
                 </div>
                 {/*end::Actions*/}
-            </div>
+            </form>
 
         </div>
 

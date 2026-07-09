@@ -34,8 +34,8 @@ export const Dialog = {
             cancelButtonText: 'No',
             allowOutsideClick: false,
             customClass: {
-                confirmButton: 'btn btn-danger',
-                cancelButton: 'btn btn-light',
+                confirmButton: 'btn btn-light-danger',
+                cancelButton: 'btn btn-light-secondary',
             },
         });
     },

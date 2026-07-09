@@ -5,6 +5,8 @@ import {useRouter} from 'next/navigation'
 import {Dialog} from "@/lib/sweet-alert-dialogs";
 import {authService} from "@/lib/auth/service";
 import {useAuth} from "@/contexts/auth/auth-context";
+import {CredentialResponse, useGoogleLogin} from '@react-oauth/google';
+
 
 export interface LoginFormData {
     email: string;
@@ -142,6 +144,61 @@ export const useLoginForm = () => {
         [router, setUser]
     );
 
+    // NUEVA FUNCIONALIDAD: Login con Google
+    const handleGoogleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            setIsLoading(true);
+            try {
+                console.log('REPSONSE FROM GOOGLE',tokenResponse);
+                const response = await authService.loginWithGoogle(tokenResponse.credential);
+                if (response.ok && response.data.data.user) {
+                    setUser(response.data.data.user);
+                    router.push('/dashboard');
+                } else {
+                    Dialog.error(response.error || 'Error al Iniciar sesión con Google');
+                }
+            } catch (error) {
+                console.error('Error en login con Google:', error);
+                Dialog.error('Ocurrió un error al iniciar sesión con Google');
+            } finally {
+                setIsLoading(false);
+            }
+        },
+        onError: (error) => {
+            console.error('Error de Google Login:', error);
+            Dialog.error('Error al autenticar con Google');
+        }
+    });
+
+    // Login con Google — recibe el ID token (credential) emitido por
+    // Google Identity Services y lo envía al backend para autenticar.
+    const handleGoogleSuccess = useCallback(async (credentialResponse: CredentialResponse) => {
+        if (!credentialResponse?.credential) {
+            Dialog.error('Google no devolvió un token de identidad válido');
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const response = await authService.loginWithGoogle(credentialResponse.credential);
+            if (response.ok && response.data.data.user) {
+                setUser(response.data.data.user);
+                router.push('/dashboard');
+            } else {
+                Dialog.error(response.error || 'Error al Iniciar sesión con Google');
+            }
+        } catch (error) {
+            console.error('Error en login con Google:', error);
+            Dialog.error('Ocurrió un error al iniciar sesión con Google');
+        } finally {
+            setIsLoading(false);
+        }
+    }, [router, setUser]);
+
+    const handleGoogleError = useCallback(() => {
+        Dialog.error('Error al autenticar con Google');
+    }, []);
+
     useEffect(() => {
         const validationInterval = retryInitialization(initValidation);
 
@@ -154,5 +211,8 @@ export const useLoginForm = () => {
         isLoading,
         handleFinish,
         handleSubmit,
+        handleGoogleLogin,
+        handleGoogleSuccess,
+        handleGoogleError
     }
 }

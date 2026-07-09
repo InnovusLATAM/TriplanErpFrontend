@@ -1,7 +1,25 @@
 'use client'
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
 export default function Sidebar() {
+    const pathname = usePathname();
+
+    // Función helper para determinar si un link está activo
+    const isActive = (href: string) => {
+        // Para rutas exactas como /dashboard
+        if (href === '/dashboard') {
+            return pathname === '/dashboard';
+        }
+        // Para subrutas, verifica si la ruta actual comienza con el href
+        return pathname.startsWith(href);
+    };
+
+    // Función helper para generar las clases del link
+    const getLinkClasses = (href: string) => {
+        return `menu-link ${isActive(href) ? 'active' : ''}`;
+    };
+
     return (
         <div
             id="kt_app_sidebar"
@@ -41,8 +59,11 @@ export default function Sidebar() {
 
                         {/*start::Menu option single*/}
                         <div className="menu-item">
-                            <Link href="/dashboard" className="menu-link active">
-                                 <span className="menu-icon">
+                            <Link
+                                href="/dashboard"
+                                className={getLinkClasses('/dashboard')}
+                            >
+                                <span className="menu-icon">
                                     <i className="ki-duotone ki-home-2 fs-2">
                                         <span className="path1"></span>
                                         <span className="path2"></span>
@@ -55,13 +76,16 @@ export default function Sidebar() {
 
                         {/*start::Menu option single*/}
                         <div className="menu-item">
-                            <Link href="/dashboard/clientes" className="menu-link">
-                                    <span className="menu-icon">
-                                   <i className="ki-duotone ki-users fs-2">
-                                     <span className="path1"></span>
-                                     <span className="path2"></span>
-                                     <span className="path3"></span>
-                                     <span className="path4"></span>
+                            <Link
+                                href="/dashboard/clientes"
+                                className={getLinkClasses('/dashboard/clientes')}
+                            >
+                                <span className="menu-icon">
+                                    <i className="ki-duotone ki-users fs-2">
+                                        <span className="path1"></span>
+                                        <span className="path2"></span>
+                                        <span className="path3"></span>
+                                        <span className="path4"></span>
                                     </i>
                                 </span>
                                 <span className="menu-title">Clientes</span>
@@ -71,11 +95,14 @@ export default function Sidebar() {
 
                         {/*start::Menu option single*/}
                         <div className="menu-item">
-                            <Link href="/dashboard/solicitudes" className="menu-link">
-                                    <span className="menu-icon">
-                                     <i className="ki-duotone ki-questionnaire-tablet fs-2">
-                                     <span className="path1"></span>
-                                     <span className="path2"></span>
+                            <Link
+                                href="/dashboard/solicitudes"
+                                className={getLinkClasses('/dashboard/solicitudes')}
+                            >
+                                <span className="menu-icon">
+                                    <i className="ki-duotone ki-questionnaire-tablet fs-2">
+                                        <span className="path1"></span>
+                                        <span className="path2"></span>
                                     </i>
                                 </span>
                                 <span className="menu-title">Solicitudes</span>
@@ -91,15 +118,18 @@ export default function Sidebar() {
 
                         {/*start::Menu option single*/}
                         <div className="menu-item">
-                            <Link href="/dashboard/facturacion" className="menu-link">
+                            <Link
+                                href="/dashboard/facturacion"
+                                className={getLinkClasses('/dashboard/facturacion')}
+                            >
                                 <span className="menu-icon">
                                     <i className="ki-duotone ki-bill fs-2">
-                                     <span className="path1"></span>
-                                     <span className="path2"></span>
-                                     <span className="path3"></span>
-                                     <span className="path4"></span>
-                                     <span className="path5"></span>
-                                     <span className="path6"></span>
+                                        <span className="path1"></span>
+                                        <span className="path2"></span>
+                                        <span className="path3"></span>
+                                        <span className="path4"></span>
+                                        <span className="path5"></span>
+                                        <span className="path6"></span>
                                     </i>
                                 </span>
                                 <span className="menu-title">Facturación</span>
@@ -115,12 +145,15 @@ export default function Sidebar() {
 
                         {/*start::Menu option single*/}
                         <div className="menu-item">
-                            <Link href="/dashboard/configuraciones" className="menu-link">
-                                    <span className="menu-icon">
-                                <i className="ki-duotone ki-setting-2 fs-2">
- <span className="path1"></span>
- <span className="path2"></span>
-</i>
+                            <Link
+                                href="/dashboard/configuraciones"
+                                className={getLinkClasses('/dashboard/configuraciones')}
+                            >
+                                <span className="menu-icon">
+                                    <i className="ki-duotone ki-setting-2 fs-2">
+                                        <span className="path1"></span>
+                                        <span className="path2"></span>
+                                    </i>
                                 </span>
                                 <span className="menu-title">Configuraciones</span>
                             </Link>
@@ -129,13 +162,16 @@ export default function Sidebar() {
 
                         {/*start::Menu option single*/}
                         <div className="menu-item">
-                            <Link href="/dashboard/perfil" className="menu-link">
-                                    <span className="menu-icon">
-                                  <i className="ki-duotone ki-profile-circle fs-2">
- <span className="path1"></span>
- <span className="path2"></span>
- <span className="path3"></span>
-</i>
+                            <Link
+                                href="/dashboard/perfil"
+                                className={getLinkClasses('/dashboard/perfil')}
+                            >
+                                <span className="menu-icon">
+                                    <i className="ki-duotone ki-profile-circle fs-2">
+                                        <span className="path1"></span>
+                                        <span className="path2"></span>
+                                        <span className="path3"></span>
+                                    </i>
                                 </span>
                                 <span className="menu-title">Mi Perfil</span>
                             </Link>
@@ -150,45 +186,50 @@ export default function Sidebar() {
 
                         {/*start::Menu option single*/}
                         <div className="menu-item">
-                            <Link href="/dashboard/guias_tutoriales" className="menu-link">
-                                    <span className="menu-icon">
-                                <i className="ki-duotone ki-book-square fs-2">
- <span className="path1"></span>
- <span className="path2"></span>
- <span className="path3"></span>
-</i>
+                            <Link
+                                href="/dashboard/guias_tutoriales"
+                                className={getLinkClasses('/dashboard/guias_tutoriales')}
+                            >
+                                <span className="menu-icon">
+                                    <i className="ki-duotone ki-book-square fs-2">
+                                        <span className="path1"></span>
+                                        <span className="path2"></span>
+                                        <span className="path3"></span>
+                                    </i>
                                 </span>
                                 <span className="menu-title">Guías y Tutoriales</span>
                             </Link>
                         </div>
                         {/*end::Menu option single*/}
 
-
-                        {/*start: Menu option multiple*/}
+                        {/*start: Menu option multiple - También actualizado */}
                         <div data-kt-menu-trigger="click" className="menu-item menu-accordion d-none">
                             {/*begin:Menu link*/}
-                            <span className="menu-link">
-    <span className="menu-icon">
-      <i className="ki-duotone ki-user-edit fs-2">
-        <span className="path1"/>
-        <span className="path2"/>
-        <span className="path3"/>
-      </i>
-    </span>
-    <span className="menu-title">Personal</span>
-    <span className="menu-arrow"/>
-  </span>
+                            <span className={`menu-link ${isActive('/dashboard/personal') ? 'active' : ''}`}>
+                                <span className="menu-icon">
+                                    <i className="ki-duotone ki-user-edit fs-2">
+                                        <span className="path1"/>
+                                        <span className="path2"/>
+                                        <span className="path3"/>
+                                    </i>
+                                </span>
+                                <span className="menu-title">Personal</span>
+                                <span className="menu-arrow"/>
+                            </span>
                             {/*end:Menu link*/}
                             {/*begin:Menu sub*/}
                             <div className="menu-sub menu-sub-accordion">
                                 {/*begin:Menu item*/}
                                 <div className="menu-item">
                                     {/*begin:Menu link*/}
-                                    <Link href="/dashboard/personal/meseros" className="menu-link">
+                                    <Link
+                                        href="/dashboard/personal/meseros"
+                                        className={getLinkClasses('/dashboard/personal/meseros')}
+                                    >
                                         <span className="menu-bullet">
                                             <span className="bullet bullet-dot"/>
                                         </span>
-                                        <span className="menu-title">Mesero</span>
+                                        <span className="menu-title">Meseros</span>
                                     </Link>
                                     {/*end:Menu link*/}
                                 </div>
@@ -196,10 +237,13 @@ export default function Sidebar() {
                                 {/*begin:Menu item*/}
                                 <div className="menu-item">
                                     {/*begin:Menu link*/}
-                                    <Link href="/dashboard/personal/cajeros" className="menu-link">
-                                           <span className="menu-bullet">
-                                              <span className="bullet bullet-dot"/>
-                                            </span>
+                                    <Link
+                                        href="/dashboard/personal/cajeros"
+                                        className={getLinkClasses('/dashboard/personal/cajeros')}
+                                    >
+                                        <span className="menu-bullet">
+                                            <span className="bullet bullet-dot"/>
+                                        </span>
                                         <span className="menu-title">Cajeros</span>
                                     </Link>
                                     {/*end:Menu link*/}

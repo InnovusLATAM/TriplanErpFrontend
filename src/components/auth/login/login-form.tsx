@@ -1,12 +1,34 @@
 'use client'
 import Link from "next/link";
+import {GoogleLogin} from "@react-oauth/google";
 import {useLoginForm} from "@/hooks/auth/useLogin";
+
+// Estilos para superponer el botón oficial (invisible) sobre el botón custom.
+// El botón oficial captura el click y emite el ID token; el botón custom
+// solo aporta el look & feel.
+const googleOverlayWrapper: React.CSSProperties = {
+    position: 'relative',
+    width: '100%',
+};
+
+const googleOverlayHidden: React.CSSProperties = {
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    opacity: 0.0001,
+    zIndex: 2,
+    colorScheme: 'light',
+};
 
 export default function LoginForm() {
     const {
         isLoading,
         handleFinish,
         handleSubmit,
+        handleGoogleLogin,
+        handleGoogleSuccess,
+        handleGoogleError
     } = useLoginForm();
 
     return (
@@ -32,19 +54,38 @@ export default function LoginForm() {
                 <div className="row g-3 mb-9">
                     {/*begin::Col*/}
                     <div className="col-md-6">
-                        {/*begin::Google link-*/}
-                        <a
-                            href="#"
-                            className="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100"
-                        >
-                            <img
-                                alt="Logo"
-                                src="/media/svg/brand-logos/google-icon.svg"
-                                className="h-15px me-3"
-                            />
-                            Iniciar con Google
-                        </a>
-                        {/*end::Google link-*/}
+                        {/*begin::Google link — botón custom visual con el botón
+                            oficial de Google superpuesto e invisible por encima.
+                            El click cae en el oficial, que emite el ID token. */}
+                        <div style={googleOverlayWrapper}>
+                            <button
+                                type="button"
+                                tabIndex={-1}
+                                aria-hidden="true"
+                                disabled={isLoading}
+                                className="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100"
+                            >
+                                <img
+                                    alt="Logo"
+                                    src="/media/svg/brand-logos/google-icon.svg"
+                                    className="h-15px me-3"
+                                />
+                                Iniciar con Google
+                            </button>
+
+                            <div style={googleOverlayHidden}>
+                                <GoogleLogin
+                                    onSuccess={handleGoogleSuccess}
+                                    onError={handleGoogleError}
+                                    theme="outline"
+                                    size="large"
+                                    shape="rectangular"
+                                    text="signin_with"
+                                    width="400"
+                                />
+                            </div>
+                        </div>
+                        {/*end::Google link*/}
                     </div>
                     {/*end::Col*/}
                     {/*begin::Col*/}

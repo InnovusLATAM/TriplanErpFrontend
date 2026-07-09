@@ -1,3 +1,6 @@
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+
 export default function AuthLayout({
                                        children,
                                    }: {
@@ -12,7 +15,9 @@ export default function AuthLayout({
                     {/*begin::Form*/}
                     <div className="d-flex flex-center flex-column flex-lg-row-fluid">
                         {/*begin::Wrapper*/}
-                        {children}
+                        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ''}>
+                            {children}
+                        </GoogleOAuthProvider>
                         {/*end::Wrapper*/}
                     </div>
                     {/*end::Form*/}
